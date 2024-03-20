@@ -56,5 +56,6 @@ fn test_size() {
 fn test_capacity() {
     let bitset = BitSet::new(65);
 
-    assert_eq!(bitset.capacity(), 65)
+    assert_eq!(bitset.capacity(), 65);
+    assert_ne!(bitset.capacity(), 64);
 }
