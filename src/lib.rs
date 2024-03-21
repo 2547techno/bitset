@@ -43,9 +43,8 @@ impl BitSet {
     }
     
     // is num inside the domain of the set
-    fn is_valid(&self, num: &u8) -> Result<(), BitSetError> {
-        let _num = num.to_owned();
-        if _num >= 128u8 || _num >= self.capacity  {
+    fn is_valid(&self, num: u8) -> Result<(), BitSetError> {
+        if num >= 128u8 || num >= self.capacity  {
             return Err(BitSetError::OutOfRange)
         }
 
@@ -61,7 +60,7 @@ impl BitSet {
     /// # Arguments
     /// 
     /// * `num` - The element to check for inclusion
-    pub fn has(&self, num: &u8) -> Result<bool, BitSetError> {
+    pub fn has(&self, num: u8) -> Result<bool, BitSetError> {
         self.is_valid(num)?;
         
         let mut _data = self.data.to_owned();
@@ -76,7 +75,7 @@ impl BitSet {
     /// # Arguments
     ///
     /// * `num` - The element to add to the bitset
-    pub fn add(&mut self, num: &u8) -> Result<(), BitSetError> {
+    pub fn add(&mut self, num: u8) -> Result<(), BitSetError> {
         self.is_valid(num)?; 
         
         let mut mask = 1u128;
@@ -92,7 +91,7 @@ impl BitSet {
     /// # Arguments
     ///
     /// * `num` - The element to remove from the bitset
-    pub fn remove(&mut self, num: &u8) -> Result<(), BitSetError> {
+    pub fn remove(&mut self, num: u8) -> Result<(), BitSetError> {
         self.is_valid(num)?;
         if !self.has(num)? {
             return Err(BitSetError::ElementNotFound)
