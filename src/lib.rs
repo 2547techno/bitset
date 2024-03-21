@@ -1,16 +1,11 @@
 use std::fmt;
 
+#[derive(Debug)]
 pub enum BitSetError {
     /// The element you are trying to access is not within the domain of the bitset
     OutOfRange,
     /// The element you are trying to access is not found in the bitset
     ElementNotFound
-}
-
-impl fmt::Debug for BitSetError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{:?}", self)
-    }
 }
 
 /// Bitset representation
